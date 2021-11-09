@@ -65,7 +65,7 @@ function finalResult() {
 // gives alert at end about final result
 function game() {
     alert(
-    "Welcome to the thrilling game of Rock, Paper, Scissors! \nHit 'ok' to play a quick 5-round game!");
+    "Welcome to the thrilling game of Rock, Paper, Scissors! \nHit 'ok' or 'close' to play a quick 5-round game!");
     alert("Round 1");
     playRound();
     updateScore();
