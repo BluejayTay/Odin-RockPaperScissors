@@ -1,9 +1,94 @@
 //myScript.js
-
 let playerScore = 0;
 let computerScore = 0;
+let playerSelection = "";
+let displayButtonsCounter = 0;
+let roundCounter = 0;
 
-//Create a function named computerplay that will randomly retun the string; "rock", "paper", or "scissors"
+const gameContainer = document.getElementById("gameContainer");
+const playGameBtn = document.getElementById("playGameBtn");
+const gameButtons = document.getElementById("gameButtons");
+const rockBtn = document.getElementById("rockBtn");
+const paperBtn = document.getElementById("paperBtn");
+const scissorsBtn = document.getElementById("scissorsBtn");
+const resultBox = document.getElementById("resultBox");
+const roundResultBox = document.getElementById("roundResultBox");
+const scoreBox = document.getElementById("scoreBox");
+const roundNumberBox = document.getElementById("roundNumberBox");
+
+if (displayButtonsCounter == 0) {
+gameContainer.removeChild(resultBox);
+resultBox.removeChild(roundResultBox);
+resultBox.removeChild(scoreBox);
+resultBox.removeChild(roundNumberBox);
+gameButtons.removeChild(rockBtn);
+gameButtons.removeChild(paperBtn);
+gameButtons.removeChild(scissorsBtn);
+gameContainer.removeChild(gameButtons);
+}
+
+playGameBtn.addEventListener("mouseover", () => {
+    playGameBtn.style.background = "black";
+    playGameBtn.style.color = "rgb(191, 218, 192)";
+    playGameBtn.style.borderStyle = "dotted";
+    playGameBtn.style.borderColor = "rgb(191, 218, 192)";
+    playGameBtn.style.borderWidth = "10px";
+});
+playGameBtn.addEventListener("mouseout", () => {
+    playGameBtn.style.background = "rgb(191, 218, 192)";
+    playGameBtn.style.color = "black";
+});
+playGameBtn.addEventListener("click", () => {
+    gameContainer.removeChild(playGameBtn);
+    roundCounter = 0;
+    roundResultBox.textContent = "";
+    scoreBox.textContent = "";
+    roundNumberBox.textContent = "";
+    playerScore = 0;
+    computerScore = 0;
+    roundNumberBox.textContent = `Round ${roundCounter + 1}`
+
+    if (displayButtonsCounter < 1) {
+        gameContainer.appendChild(resultBox);
+        resultBox.appendChild(roundResultBox);
+        resultBox.appendChild(scoreBox);
+        resultBox.appendChild(roundNumberBox);
+        gameContainer.appendChild(gameButtons);
+        gameButtons.appendChild(rockBtn);
+        gameButtons.appendChild(paperBtn);
+        gameButtons.appendChild(scissorsBtn);
+        
+    }
+    displayButtonsCounter++;   
+});
+rockBtn.addEventListener("click", () => {
+    playRound("rock");
+});
+rockBtn.addEventListener("mouseover", () => {
+    rockBtn.style.borderColor = "rgb(191, 218, 192)";
+});
+rockBtn.addEventListener("mouseout", () => {
+    rockBtn.style.borderColor = "rgb(46, 48, 46)";
+});
+paperBtn.addEventListener("click", () => {
+    playRound("paper");  
+});
+paperBtn.addEventListener("mouseover", () => {
+    paperBtn.style.borderColor = "rgb(191, 218, 192)";
+});
+paperBtn.addEventListener("mouseout", () => {
+    paperBtn.style.borderColor = "rgb(46, 48, 46)";
+});
+scissorsBtn.addEventListener("click", () => {
+    playRound("scissors");
+});
+scissorsBtn.addEventListener("mouseover", () => {
+    scissorsBtn.style.borderColor = "rgb(191, 218, 192)";
+});
+scissorsBtn.addEventListener("mouseout", () => {
+    scissorsBtn.style.borderColor = "rgb(46, 48, 46)";
+});
+
 function computerPlay() {
     let randomNumber = Math.floor(Math.random()*3);
     let computerChoice = "";
@@ -17,70 +102,52 @@ function computerPlay() {
         computerChoice = "Error";
     }
     return computerChoice;
-}
-/* Create a function that plays a round of rock,paper,scissors 
-if user wins, their score is added a point
-if computer wins, their score is added a point 
-an alert displays what user chose vs. what computer chose and says whether the user won the round or not
-function ulimately returns the result of the round re: tie/win/lose/error */
+};
+
 function playRound(playerSelection, computerSelection) {
-    playerSelection = window.prompt("What will it be? rock, paper, or scissors?").toLowerCase();
     computerSelection = computerPlay();
     let roundResult = "";
+    roundCounter++;
     if (playerSelection == computerSelection) {
-        roundResult = "It's a tie!";
-        alert("You chose " + playerSelection + " and the computer chose " + computerSelection + ". " + roundResult);
+        roundResult = "That round was a tie!";
     }   else if (playerSelection == "rock" && computerSelection == "paper" || playerSelection == "paper" && computerSelection == "scissors" || playerSelection == "scissors" && computerSelection == "rock") {
-        roundResult = "You lose, computer wins this round! \nThis doesn't bode very well for humankind... let's just keep going...";
+        roundResult = "Computer wins that round!";
         computerScore = ++computerScore;
-        alert("You chose " + playerSelection + " and the computer chose " + computerSelection + ". \n" + roundResult);
     }   else if (playerSelection == "rock" && computerSelection == "scissors" || playerSelection == "paper" && computerSelection == "rock" || playerSelection == "scissors" && computerSelection == "paper") {
-        roundResult = "You win this round! Yay!!!";
+        roundResult = "You win that round! Yay!!!";
         playerScore = ++playerScore;
-        alert("You chose " + playerSelection + " and the computer chose " + computerSelection + ". \n" + roundResult);
     }   else {
-        roundResult = "Hmm, something went wrong...";
-        alert("You chose " + playerSelection + " and the computer chose " + computerSelection + ". \n" + roundResult + " ... \nLet's just move along, shall we?");
+        roundResult = "Hmm, something went wrong...let's just keep going";
     }
-    return roundResult;
-}
-// function to alert user about the score so far
-function updateScore() {
-   alert("Your score is: " + playerScore + " and the computer's score is: " + computerScore);
-}
-// function to alert user about the final score result
-function finalResult() {
+    roundResultBox.textContent = `Round ${roundCounter}/5 result: You chose ${playerSelection} and the computer chose ${computerSelection}... ${roundResult}`;
+    scoreBox.textContent = `You: ${playerScore} Computer: ${computerScore}`;
+    roundNumberBox.textContent = `Round ${roundCounter + 1}...`;
+    if (isGameOver()) {
+        setFinalMessage();
+        resetGame();
+      }
+};
+
+function isGameOver() {
+    return roundCounter == 5;
+  }
+function setFinalMessage() {
     if (playerScore > computerScore) {
-        alert("Your final score is: " + playerScore + " and the computer's final score is: " + computerScore + "... \nYOU WIN!!!! \nMaybe there IS hope for man in the war against the machines after all! Refresh the page to play again!")
+    roundNumberBox.textContent = `...You won the game!!!!!!!! 😀`;
     } else if (computerScore > playerScore) {
-        alert("Your final score is: " + playerScore + " and the computer's final score is: " + computerScore + "... \nYOU LOSE!!!! \nSorry brah, better luck next time! Refresh the page to play again!")
-    } else {
-        alert("Your final score is: " + playerScore + " and the computer's final score is: " + computerScore + "... \nTIE GAME! \nHow anticlimactic... refresh the page to play again!")
+    roundNumberBox.textContent = `...You lost the game 🙁`;
+    } else if (computerScore == playerScore) {
+    roundNumberBox.textContent = `...TIE GAME...how anticlimactic...`;
     }
 }
-/* function to play 5 rounds of rock,paper,scissors
-has alert in begining to intoduce the game
-alerts user of the round #
-updates user about the on-going score after each round
-gives alert at end about final result */
-function game() {
-    alert(
-    "Welcome to the thrilling game of Rock, Paper, Scissors! \nHit 'ok' or 'close' to play a quick 5-round game! \n(make sure your answers don't have any spaces - just the word by itself!)");
-    alert("Round 1");
-    playRound();
-    updateScore();
-    alert("Round 2");
-    playRound();
-    updateScore();
-    alert("Round 3");
-    playRound();
-    updateScore();
-    alert("Round 4");
-    playRound();
-    updateScore();
-    alert("Round 5");
-    playRound();
-    updateScore();
-    finalResult();
+function resetGame() {
+    gameButtons.removeChild(rockBtn);
+    gameButtons.removeChild(paperBtn);
+    gameButtons.removeChild(scissorsBtn);
+    gameContainer.removeChild(gameButtons);
+    gameContainer.appendChild(playGameBtn);
+    playGameBtn.textContent = `Play another 5-round Game!`;
+    displayButtonsCounter = 0;
 }
-game();
+  
+    
