@@ -1,99 +1,103 @@
 /*Styles.css*/
-@media only screen and (max-width: 625px) {
-    #gameButtons {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      row-gap: 8px;
-    }
-}
-#gameButtons {
+@media (max-width: 650px) {
+  #gameButtons {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    column-gap: 15px;
+    row-gap: 5px;
+  }
+  img[src="images/paper.png"], img[src="images/scissors.jpg"], img[src="images/rock.png"] {
+    height: 150px;
+  }
+  #rockBtn, #paperBtn, #scissorsBtn {
+    width: 150px;
+  }
+  #title {
+    font-size: 28px;
+  }
+}
+
+#gameButtons {
+  display: flex;
+  justify-content: center;
+  column-gap: 15px;
 }
 body {
-    background-image: url("gridBackground.jpg");
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  background-image: url("images/gridBackground.jpg");
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 #header {
-    padding: 0;
-    margin-top: 0px;
-    background-color: black;
+  padding: 0;
+  margin-top: 0px;
+  background-color: black;
 }
 #title {
-    text-align: center;
-    margin: 0px auto 0px auto;
-    color: rgb(191, 218, 192);
-    font-weight: lighter;
-    font-size: 60px;
-    padding-bottom: 3px;
+  text-align: center;
+  margin: 0px auto 0px auto;
+  color: rgb(191, 218, 192);
+  font-weight: lighter;
+  font-size: 32px;
+  padding-bottom: 3px;
 }
-@media only screen and (max-width: 615px) {
-    #title {
-    font-size: 42px;
-    }
+img[src="images/bannerImage.jpg"] {
+  max-width: 100%;
+  height: auto;
 }
-img[src="bannerImage.jpg"] {
-    max-width: 100%;
-    height: auto;
-}
-img[src="paper.png"], img[src="scissors.jpg"], img[src="rock.png"] {
-    height: 200px;
-}
-@media only screen and (max-width: 625px) {
-    img[src="paper.png"], img[src="scissors.jpg"], img[src="rock.png"] {
-    height: 150px;
-    }
+img[src="images/paper.png"], img[src="images/scissors.jpg"], img[src="images/rock.png"] {
+  height: 200px;   
 }
 #playGameBtn {
-    font-size: 32px;
-    margin: 25px auto auto auto;
-    border-radius: 25px;
-    border-width: 0px;
-    background: rgb(191, 218, 192);
-    padding: 20px;
+  font-size: 32px;
+  margin: 25px auto auto auto;
+  border-radius: 25px;
+  border-width: 0px;
+  background: rgb(191, 218, 192);
+  padding: 20px;
 }
 #rockBtn, #paperBtn, #scissorsBtn {
-    padding: 0px;
-    width: 200px;
-    border: 5px solid rgb(46, 48, 46); 
-    border-radius: 10px;
-    background-color: grey;
+  padding: 0px;
+  width: 200px;
+  border: 5px solid rgb(46, 48, 46); 
+  border-radius: 10px;
+  background-color: grey;
 }
 #gameContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 0;
-    margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 0;
+  margin-bottom: 15px;
 }
 #resultBox {
-    color: black;
-    background-color: honeydew;
-    margin-bottom: 15px;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: black;
+  background-color: honeydew;
+  margin-bottom: 15px;
+  min-height: 100px;
 }
 #roundResultBox {
-    font-size: 16px;
+  font-size: 16px;
 }
 #scoreBox {
-    font-size: 16px;
-    font-weight: bold;
+  font-size: 16px;
+  font-weight: bold;
 }
 #roundNumberBox {
-    font-weight: bolder;
-    font-size: 24px;
+  font-weight: bolder;
+  font-size: 24px;
 }
 #footer {
-    margin-top: auto;
-    color: white;
-    padding: 10px;
-    text-align: center;
-    background: rgb(46, 48, 46);
+  margin-top: auto;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  background: rgb(46, 48, 46);
 }
