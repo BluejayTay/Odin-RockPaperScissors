@@ -53,7 +53,7 @@ img[src="images/paper.png"], img[src="images/scissors.jpg"], img[src="images/roc
 }
 #playGameBtn {
   font-size: 32px;
-  margin: 25px auto auto auto;
+  margin: 50px auto auto auto;
   border-radius: 25px;
   border-width: 0px;
   background: rgb(191, 218, 192);
