@@ -1,5 +1,5 @@
 /*Styles.css*/
-@media only screen (max-width: 650px) {
+@media only screen (max-width: 625px) {
   #gameButtons {
     display: flex;
     flex-direction: column;
